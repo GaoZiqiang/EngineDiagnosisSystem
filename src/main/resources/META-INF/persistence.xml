@@ -1,28 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<!-- name可以自定义 -->
-	<persistence-unit name="PersonUnit" transaction-type="RESOURCE_LOCAL">
-		<description>
-            Persistence unit for HelloWorldJPA
-        </description>
-
-		<jta-data-source>java:/jboss/labDS</jta-data-source>
-		<!-- 持久化类 -->
-		<class>cn.edu.sdut.softlab.model.Person</class>
-		<class>cn.edu.sdut.softlab.model.Man</class>
-		<class>cn.edu.sdut.softlab.model.FoodTreeTable</class>
-		<exclude-unlisted-classes>true</exclude-unlisted-classes>
-
+	<persistence-unit name="engine_diagnosis_system"
+		transaction-type="RESOURCE_LOCAL">
+		<class>cn.edu.sdut.softlab.model.UserInfo</class>
+		<class>cn.edu.sdut.softlab.model.EngineInfo</class>
 		<properties>
-			<property name="hibernate.transaction.jta.platform"
-				value="org.hibernate.service.jta.platform.internal.JBossAppS‌​erverJtaPlatform" />
-			<property name="hibernate.show_sql" value="true" />
-			<!-- update 表不存在的时候，它会创建数据库表 -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- standard properties -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:postgresql://localhost:5432/engine_diagnosis_system" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<!-- hibernate-specific properties -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+
 		</properties>
 	</persistence-unit>
-
-</persistence>
+</persistence> 
