@@ -5,19 +5,15 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 </h:head>
 <h:body>
-    <h1>第一个JPA小例子</h1>
-    <h:form>
-输入姓名:<h:inputText value="#{controller.newPerson.name}" />
-        <br />
-输入密码:<h:inputText value="#{controller.newPerson.password}" />
-        <br />
-        <h:commandButton value="登录" action="#{controller.addPerson}" />
-    </h:form>
+	<h1>用户注册</h1>
+	<h:form>
+		<h:commandButton value="注册" action="#{UserController.register}" />
+	</h:form>
 </h:body>
 </html>
