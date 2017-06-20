@@ -10,3 +10,5 @@ Hibernate/JPA + Swing
 maven构建
 ## 项目部署
 在项目所在目录下运行命令mvn clean package wildfly:deploy
+## 页面访问
+在浏览器中输入'120.24.50.47/diagnosis'即可访问
