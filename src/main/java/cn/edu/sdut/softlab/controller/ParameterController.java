@@ -155,7 +155,16 @@ public class ParameterController implements Serializable {
 		System.out.println("成功find");
 
 		engineInfoList = em.createQuery(cq).getResultList();
+		
+		
+		newEngineInfoList = em.createQuery("select engine from EngineInfo engine order by engine.id desc").getResultList();
+		Iterator<EngineInfo> newIterator = newEngineInfoList.iterator();
+		while (newIterator.hasNext()) {
+			EngineInfo newEngine = (EngineInfo) newIterator.next(); // item.getName();
+			
 
+			System.out.println("print newId:  " + newEngine.getId());
+		}
 		// engineInfoList.size();
 		// engineInfoList.get(1);
 		// System.out.println("打印输出size: " + engineInfoList.size());
@@ -187,6 +196,14 @@ public class ParameterController implements Serializable {
 
 		engineInfoList = em.createQuery(cq).getResultList();
 
+		newEngineInfoList = em.createQuery("select engine from EngineInfo engine order by engine.id desc").getResultList();
+		Iterator<EngineInfo> newIterator = newEngineInfoList.iterator();
+		while (newIterator.hasNext()) {
+			EngineInfo newEngine = (EngineInfo) newIterator.next(); // item.getName();
+			
+
+			System.out.println("print newId:  " + newEngine.getId());
+		}
 		// engineInfoList.size();
 		// engineInfoList.get(1);
 		// System.out.println("打印输出size: " + engineInfoList.size());
