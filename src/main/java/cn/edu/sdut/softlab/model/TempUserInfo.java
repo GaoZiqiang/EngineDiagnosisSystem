@@ -3,7 +3,7 @@ package cn.edu.sdut.softlab.model;
 import javax.inject.Named;
 
 @Named("temp")
-public class TempUser {
+public class TempUserInfo {
 	private String username;
 	private String password;
 
