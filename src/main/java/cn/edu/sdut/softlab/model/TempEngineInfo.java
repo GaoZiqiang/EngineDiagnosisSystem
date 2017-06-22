@@ -7,20 +7,42 @@ import javax.inject.Named;
 @RequestScoped
 @Named("tempEngine")
 @Default
-public class TempEngine {
+public class TempEngineInfo {
+	// 发动机参数
 	private Double tem_T;
 	private Double pressure_P1;
 	private Double pressure_P2;
 	private Double gap_L1;
 	private Double gap_L2;
 	private Double offset_X;
-
+	// 发动机异常类型
 	private String exception_T;
 	private String exception_P1;
 	private String exception_P2;
 	private String exception_L1;
 	private String exception_L2;
 	private String exception_X;
+
+	// 发动机类型和冷却方式
+	private String engineType;
+	private String coolingMethod;
+
+	// getter和setter方法
+	public String getEngineType() {
+		return engineType;
+	}
+
+	public void setEngineType(String engineType) {
+		this.engineType = engineType;
+	}
+
+	public String getCoolingMethod() {
+		return coolingMethod;
+	}
+
+	public void setCoolingMethod(String coolingMethod) {
+		this.coolingMethod = coolingMethod;
+	}
 
 	public Double getTem_T() {
 		return tem_T;
