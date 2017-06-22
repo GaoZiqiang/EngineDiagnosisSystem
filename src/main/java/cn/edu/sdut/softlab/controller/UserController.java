@@ -13,7 +13,7 @@ import javax.transaction.HeuristicRollbackException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
-import cn.edu.sdut.softlab.model.TempUser;
+import cn.edu.sdut.softlab.model.TempUserInfo;
 import cn.edu.sdut.softlab.model.UserInfo;
 
 @Named("UserController")
@@ -23,7 +23,7 @@ public class UserController {
 	EntityManager em;
 
 	private UserInfo user = new UserInfo();
-	private TempUser tempUser = new TempUser();
+	private TempUserInfo tempUser = new TempUserInfo();
 
 	public UserInfo getUser() {
 		return user;
@@ -33,11 +33,11 @@ public class UserController {
 		this.user = user;
 	}
 
-	public TempUser getTempUser() {
+	public TempUserInfo getTempUser() {
 		return tempUser;
 	}
 
-	public void setTempUser(TempUser tempUser) {
+	public void setTempUser(TempUserInfo tempUser) {
 		this.tempUser = tempUser;
 
 	}
