@@ -22,6 +22,14 @@ import cn.edu.sdut.softlab.model.TempEngineInfo;
 @RequestScoped
 public class ParameterController implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private TempEngineInfo newEngineInfo;
+
+	@Inject
+	private EngineInfo engineInfo;
+	EntityManagerFactory emf;
+	EntityManager em;
 	String resultFlag = null;
 
 	// 必须要有getter和setter方法
@@ -32,14 +40,6 @@ public class ParameterController implements Serializable {
 	public void setResultFlag(String resultFlag) {
 		this.resultFlag = resultFlag;
 	}
-
-	EntityManagerFactory emf;
-	EntityManager em;
-	@Inject
-	private TempEngineInfo newEngineInfo;
-
-	@Inject
-	private EngineInfo engineInfo;
 	private List<EngineInfo> newEngineInfoList;
 	// 测试结果list
 	private List<String> resultList = new ArrayList<String>();
@@ -96,10 +96,7 @@ public class ParameterController implements Serializable {
 		// 1.获取T P1 P2等参数
 		System.out.println("print engineInfo:  " + engineInfo.toString());
 
-		// System.out.println("print Tem: " + newEngineInfo.getTem_T());
-		// System.out.println("print P1: " + newEngineInfo.getPressure_P1());
-		// System.out.println("print Tem" + tempEngine.getTem_T());
-		engineInfo.setTem_T(newEngineInfo.getTem_T());
+		
 		engineInfo.setPressure_P1(newEngineInfo.getPressure_P1());
 		engineInfo.setPressure_P2(newEngineInfo.getPressure_P2());
 		engineInfo.setGap_L1(newEngineInfo.getGap_L1());
