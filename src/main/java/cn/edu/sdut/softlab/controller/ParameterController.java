@@ -105,6 +105,30 @@ public class ParameterController implements Serializable {
 
 		// 2.逻辑判断
 
+		if(newEngineInfo.getEngineType().equals("gasolineEngine")
+				&& newEngineInfo.getCoolingMethod().equals("coolant")) {
+			if(newEngineInfo.getTem_T() > 80 && newEngineInfo.getTem_T() < 90) {
+				System.out.println("温度过高!");
+				resultFlag = "温度过高!";
+				engineInfo.setException_T("温度过高!");
+			}
+			if(newEngineInfo.getPressure_P1() < 0.3) {
+				System.out.println("水泵压力过低!");
+				resultFlag = "水泵压力过低!";
+				engineInfo.setException_P1("水泵压力过低!!");
+			}
+			if(newEngineInfo.getPressure_P1() > 0.5) {
+				System.out.println("水泵压力过高!");
+				resultFlag = "水泵压力过高!";
+				engineInfo.setException_P1("水泵压力过高!");
+			}
+		}else if() {
+			
+		}else if() {
+			
+		}else if() {
+			
+		}
 		// 情况一
 		if (newEngineInfo.getEngineType().equals("gasolineEngine")
 				&& newEngineInfo.getCoolingMethod().equals("coolant")) {
