@@ -62,14 +62,14 @@ ul li {
 #nav {
 	line-height: 30px;
 	background-color: #eeeeee;
-	height: 620px;
+	height: 850px;
 	width: 100px;
 	float: left;
 	padding: 5px;
 }
 
 #section {
-	height:620px;
+	height:850px;
 	width:600px;
 	padding:10px;
 }
