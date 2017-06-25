@@ -22,49 +22,23 @@ import cn.edu.sdut.softlab.model.TempEngineInfo;
 @RequestScoped
 public class ParameterController implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private TempEngineInfo newEngineInfo;
 
 	@Inject
 	private EngineInfo engineInfo;
+	
 	EntityManagerFactory emf;
 	EntityManager em;
-	String resultFlag = null;
+	//测试结果
+	String resultT = null;
+	String resultP1 = null;
+	String resultP2 = null;
+	String resultL1 = null;
+	String resultX = null;
 
-	// 必须要有getter和setter方法
-	public String getResultFlag() {
-		return resultFlag;
-	}
-
-	public void setResultFlag(String resultFlag) {
-		this.resultFlag = resultFlag;
-	}
-	private List<EngineInfo> newEngineInfoList;
-	// 测试结果list
-	private List<String> resultList = new ArrayList<String>();
-
-	// private ArrayList<String> list = new ArrayList<String>;
-	public List<String> getResultList() {
-		return resultList;
-	}
-
-	public void setResultList(List<String> resultList) {
-		this.resultList = resultList;
-	}
-
-	// resultList填充
-
-	// newEngineInfo的getter和setter方法
-	public TempEngineInfo getNewEngineInfo() {
-		return newEngineInfo;
-	}
-
-	public void setNewEngineInfo(TempEngineInfo newEngineInfo) {
-		this.newEngineInfo = newEngineInfo;
-	}
-
-	// 统计报表
+	
 	private List<EngineInfo> engineInfoList = null;
 
 	public List<EngineInfo> getEngineInfoList() {
@@ -90,13 +64,113 @@ public class ParameterController implements Serializable {
 	public void setEngineInfo(EngineInfo engineInfo) {
 		this.engineInfo = engineInfo;
 	}
+	// 必须要有getter和setter方法
+
+	public String getResultT() {
+		return resultT;
+	}
+
+	public void setResultT(String resultT) {
+		this.resultT = resultT;
+	}
+
+	public String getResultP1() {
+		return resultP1;
+	}
+
+	public void setResultP1(String resultP1) {
+		this.resultP1 = resultP1;
+	}
+
+	public String getResultP2() {
+		return resultP2;
+	}
+
+	public void setResultP2(String resultP2) {
+		this.resultP2 = resultP2;
+	}
+
+	public String getResultL1() {
+		return resultL1;
+	}
+
+	public void setResultL1(String resultL1) {
+		this.resultL1 = resultL1;
+	}
+
+	public String getResultX() {
+		return resultX;
+	}
+
+	public void setResultX(String resultX) {
+		this.resultX = resultX;
+	}
+
+	private List<EngineInfo> newEngineInfoList;
+	// 故障分析list
+	private List<String> resultListT = new ArrayList<String>();
+	private List<String> resultListP1 = new ArrayList<String>();
+	private List<String> resultListP2 = new ArrayList<String>();
+	private List<String> resultListL1 = new ArrayList<String>();
+	private List<String> resultListX = new ArrayList<String>();
+
+	public List<String> getResultListT() {
+		return resultListT;
+	}
+
+	public void setResultListT(List<String> resultListT) {
+		this.resultListT = resultListT;
+	}
+
+	public List<String> getResultListP1() {
+		return resultListP1;
+	}
+
+	public void setResultListP1(List<String> resultListP1) {
+		this.resultListP1 = resultListP1;
+	}
+
+	public List<String> getResultListP2() {
+		return resultListP2;
+	}
+
+	public void setResultListP2(List<String> resultListP2) {
+		this.resultListP2 = resultListP2;
+	}
+
+	public List<String> getResultListL1() {
+		return resultListL1;
+	}
+
+	public void setResultListL1(List<String> resultListL1) {
+		this.resultListL1 = resultListL1;
+	}
+
+	public List<String> getResultListX() {
+		return resultListX;
+	}
+
+	public void setResultListX(List<String> resultListX) {
+		this.resultListX = resultListX;
+	}
+
+	// newEngineInfo的getter和setter方法
+	public TempEngineInfo getNewEngineInfo() {
+		return newEngineInfo;
+	}
+
+	public void setNewEngineInfo(TempEngineInfo newEngineInfo) {
+		this.newEngineInfo = newEngineInfo;
+	}
+
+	// 统计报表
+	
 
 	// 参数分析
 	public String analysis() {
 		// 1.获取T P1 P2等参数
 		System.out.println("print engineInfo:  " + engineInfo.toString());
-
-		
+		engineInfo.setTem_T(newEngineInfo.getTem_T());
 		engineInfo.setPressure_P1(newEngineInfo.getPressure_P1());
 		engineInfo.setPressure_P2(newEngineInfo.getPressure_P2());
 		engineInfo.setGap_L1(newEngineInfo.getGap_L1());
@@ -105,223 +179,196 @@ public class ParameterController implements Serializable {
 
 		// 2.逻辑判断
 
-		if(newEngineInfo.getEngineType().equals("gasolineEngine")
-				&& newEngineInfo.getCoolingMethod().equals("coolant")) {
-			if(newEngineInfo.getTem_T() > 80 && newEngineInfo.getTem_T() < 90) {
-				System.out.println("温度过高!");
-				resultFlag = "温度过高!";
-				engineInfo.setException_T("温度过高!");
-			}
-			if(newEngineInfo.getPressure_P1() < 0.3) {
-				System.out.println("水泵压力过低!");
-				resultFlag = "水泵压力过低!";
-				engineInfo.setException_P1("水泵压力过低!!");
-			}
-			if(newEngineInfo.getPressure_P1() > 0.5) {
-				System.out.println("水泵压力过高!");
-				resultFlag = "水泵压力过高!";
-				engineInfo.setException_P1("水泵压力过高!");
-			}
-		}else if() {
-			
-		}else if() {
-			
-		}else if() {
-			
-		}
-		// 情况一
+		// 1.加冷却液 汽油机
 		if (newEngineInfo.getEngineType().equals("gasolineEngine")
 				&& newEngineInfo.getCoolingMethod().equals("coolant")) {
+			// 冷却液温度T
 			if (newEngineInfo.getTem_T() > 80 && newEngineInfo.getTem_T() < 90) {
-				System.out.println("温度过高!");
-				resultFlag = "温度过高!";
-				engineInfo.setException_T("温度过高!");
-				// resultList.add("温度过高");
-
+				resultT = "正常";
 			} else {
-				if (newEngineInfo.getPressure_P1() > 0.3 && newEngineInfo.getPressure_P1() < 0.5) {
-					if (newEngineInfo.getPressure_P2() > 1.0 && newEngineInfo.getPressure_P2() < 1.2) {
-						if (newEngineInfo.getGap_L1() == 1) {
-							if (newEngineInfo.getGap_L2() == 0) {
-								if (newEngineInfo.getOffset_X() > 8) {
-									System.out.println("结束!");
-									resultFlag = "测试结束，没有故障!";
-									// resultList.add("测试结束，没有故障!");
-								} else {
-									System.out.println("冷却系统温度异常!");
-									resultFlag = "冷却系统温度异常!";
-									engineInfo.setException_X("冷却系统温度异常!");
-									// resultList.add("风扇传动带脱落");
-								}
-							} else {
-								System.out.println("水泵轴与叶轮松脱!");
-								resultFlag = "水泵轴与叶轮松脱!";
-								engineInfo.setException_L2("水泵轴与叶轮松脱!");
-							}
-						} else {
-							System.out.println("节温器主筏门脱落!");
-							resultFlag = "节温器主筏门脱落!";
-							engineInfo.setException_L1("节温器主筏门脱落!");
-						}
-					} else {
-						System.out.println("压力较低!");
-						resultFlag = "压力较低!";
-						engineInfo.setException_P2("压力较低!");
-					}
-				} else {
-					if (newEngineInfo.getPressure_P1() < 0.3) {
-						System.out.println("水泵压力过低!");
-						resultFlag = "水泵压力过低!";
-						engineInfo.setException_P1("水泵压力过低!!");
-					} else if (newEngineInfo.getPressure_P1() > 0.5) {
-						System.out.println("水泵压力过高!");
-						resultFlag = "水泵压力过高!";
-						engineInfo.setException_P1("水泵压力过高!");
-					}
-
-					// resultList.add("冷却系统漏水");
-				}
+				System.out.println("冷却液温度过高!");
+				resultT = "冷却液温度过高!";
+				engineInfo.setException_T("冷却液温度过高!");
 			}
-		} else if (newEngineInfo.getEngineType().equals("dieselEngine")
+			// 水泵压力P1
+			if (newEngineInfo.getPressure_P1() < 0.3) {
+				System.out.println("水泵压力过低!");
+				resultP1 = "水泵压力过低!";
+				engineInfo.setException_P1("水泵压力过低!");
+			} else if (newEngineInfo.getPressure_P1() > 0.5) {
+				System.out.println("水泵压力过resultL1高!");
+				resultP1 = "水泵压力过高!";
+				engineInfo.setException_P1("水泵压力过高!");
+			}else {
+				resultP1 = "正常";
+			}
+			// 汽缸压缩压力P2
+			if (newEngineInfo.getPressure_P2() > 1.0 && newEngineInfo.getPressure_P2() < 1.2) {
+				resultP2 = "正常";
+			} else {
+				System.out.println("压力较低!");
+				resultP2 = "压力较低!";
+				engineInfo.setException_P2("压力较低!");
+			}
+			// 水泵轴与叶轮径向间隙L
+			if (newEngineInfo.getGap_L1() < 0.04) {
+				resultL1 = "正常";
+			} else {
+				System.out.println("水泵压力较明显!");
+				resultL1 = "水泵震动较明显!";
+				engineInfo.setException_L1("水泵震动较明显!");
+			}
+			// 风扇传送带偏移量X
+			if (newEngineInfo.getOffset_X() > 8) {
+				System.out.println("冷却系统温度异常!");
+				resultX = "冷却系统温度异常!";
+				engineInfo.setException_X("冷却系统温度异常!");
+			}else {
+				resultX = "正常";
+			}
+		}
+		// 2.加冷却液 柴油机
+		if (newEngineInfo.getEngineType().equals("dieselEngine")
 				&& newEngineInfo.getCoolingMethod().equals("coolant")) {
+			// 冷却液温度T
 			if (newEngineInfo.getTem_T() > 80 && newEngineInfo.getTem_T() < 90) {
-				System.out.println("温度过高!");
-				resultFlag = "温度过高!";
-				engineInfo.setException_T("温度过高!");
-
+				resultT = "正常";
 			} else {
-				if (newEngineInfo.getPressure_P1() > 0.3 && newEngineInfo.getPressure_P1() < 0.5) {
-					if (newEngineInfo.getPressure_P2() > 3.0 && newEngineInfo.getPressure_P2() < 6.0) {
-						if (newEngineInfo.getGap_L1() == 1) {
-							if (newEngineInfo.getGap_L2() == 0) {
-								if (newEngineInfo.getOffset_X() > 8) {
-									System.out.println("结束!");
-									resultFlag = "测试结束，没有故障!";
-								} else {
-									System.out.println("冷却系统温度异常!");
-									resultFlag = "冷却系统温度异常!";
-									engineInfo.setException_X("冷却系统温度异常!");
-								}
-							} else {
-								System.out.println("水泵轴与叶轮松脱!");
-								resultFlag = "水泵轴与叶轮松脱!";
-								engineInfo.setException_L2("水泵轴与叶轮松脱!");
-							}
-						} else {
-							System.out.println("节温器主筏门脱落!");
-							resultFlag = "节温器主筏门脱落!";
-							engineInfo.setException_L1("节温器主筏门脱落!");
-						}
-					} else {
-						System.out.println("压力较低!");
-						resultFlag = "压力较低!";
-						engineInfo.setException_P2("压力较低!");
-					}
-				} else {
-					if (newEngineInfo.getPressure_P1() < 0.3) {
-						System.out.println("水泵压力过低!");
-						resultFlag = "水泵压力过低!";
-						engineInfo.setException_P1("水泵压力过低!!");
-					} else if (newEngineInfo.getPressure_P1() > 0.5) {
-						System.out.println("水泵压力过高!");
-						resultFlag = "水泵压力过高!";
-						engineInfo.setException_P1("水泵压力过高!");
-					}
-				}
+				System.out.println("冷却液温度过高!");
+				resultT = "冷却液温度过高!";
+				engineInfo.setException_T("冷却液温度过高!");
 			}
-		} else if (newEngineInfo.getEngineType().equals("gasolineEngine")
-				&& newEngineInfo.getCoolingMethod().equals("antifreeze")) {
-			if (newEngineInfo.getTem_T() > 95 && newEngineInfo.getTem_T() < 105) {
-				System.out.println("温度过高!");
-				resultFlag = "温度过高!";
-				engineInfo.setException_T("温度过高!");
-
-			} else {
-				if (newEngineInfo.getPressure_P1() > 0.3 && newEngineInfo.getPressure_P1() < 0.53) {
-					if (newEngineInfo.getPressure_P2() > 3.0 && newEngineInfo.getPressure_P2() < 6.0) {
-						if (newEngineInfo.getGap_L1() == 1) {
-							if (newEngineInfo.getGap_L2() == 0) {
-								if (newEngineInfo.getOffset_X() > 8) {
-									System.out.println("结束!");
-									resultFlag = "测试结束，没有故障!";
-								} else {
-									System.out.println("冷却系统温度异常!");
-									resultFlag = "冷却系统温度异常!";
-									engineInfo.setException_X("冷却系统温度异常!");
-								}
-							} else {
-								System.out.println("水泵轴与叶轮松脱!");
-								resultFlag = "水泵轴与叶轮松脱!";
-								engineInfo.setException_L2("水泵轴与叶轮松脱!");
-							}
-						} else {
-							System.out.println("节温器主筏门脱落!");
-							resultFlag = "节温器主筏门脱落!";
-							engineInfo.setException_L1("节温器主筏门脱落!");
-						}
-					} else {
-						System.out.println("压力较低!");
-						resultFlag = "压力较低!";
-						engineInfo.setException_P2("压力较低!");
-					}
-				} else {
-					if (newEngineInfo.getPressure_P1() < 0.3) {
-						System.out.println("水泵压力过低!");
-						resultFlag = "水泵压力过低!";
-						engineInfo.setException_P1("水泵压力过低!!");
-					} else if (newEngineInfo.getPressure_P1() > 0.5) {
-						System.out.println("水泵压力过高!");
-						resultFlag = "水泵压力过高!";
-						engineInfo.setException_P1("水泵压力过高!");
-					}
-				}
+			// 水泵压力P1
+			if (newEngineInfo.getPressure_P1() < 0.3) {
+				System.out.println("水泵压力过低!");
+				resultP1 = "水泵压力过低!";
+				engineInfo.setException_P1("水泵压力过低!");
+			} else if (newEngineInfo.getPressure_P1() > 0.5) {
+				System.out.println("水泵压力过高!");
+				resultP1 = "水泵压力过高!";
+				engineInfo.setException_P1("水泵压力过高!");
+			}else {
+				resultP1 = "正常";
 			}
-		} else if (newEngineInfo.getEngineType().equals("dieselEngine")
-				&& newEngineInfo.getCoolingMethod().equals("antifreeze")) {
-			if (newEngineInfo.getTem_T() > 95 && newEngineInfo.getTem_T() < 105) {
-				System.out.println("温度过高!");
-				resultFlag = "温度过高!";
-				engineInfo.setException_T("温度过高!");
-
+			// 汽缸压缩压力P2
+			if (newEngineInfo.getPressure_P2() > 3.0 && newEngineInfo.getPressure_P2() < 6.2) {
+				resultP2 = "正常";
 			} else {
-				if (newEngineInfo.getPressure_P1() > 0.3 && newEngineInfo.getPressure_P1() < 0.5) {
-					if (newEngineInfo.getPressure_P2() > 1.0 && newEngineInfo.getPressure_P2() < 1.2) {
-						if (newEngineInfo.getGap_L1() == 1) {
-							if (newEngineInfo.getGap_L2() == 0) {
-								if (newEngineInfo.getOffset_X() > 8) {
-									System.out.println("结束!");
-									resultFlag = "测试结束，没有故障!";
-								} else {
-									System.out.println("冷却系统温度异常!");
-									resultFlag = "冷却系统温度异常!";
-									engineInfo.setException_X("冷却系统温度异常!");
-								}
-							} else {
-								System.out.println("水泵轴与叶轮松脱!");
-								resultFlag = "水泵轴与叶轮松脱!";
-								engineInfo.setException_L2("水泵轴与叶轮松脱!");
-							}
-						} else {
-							System.out.println("节温器主筏门脱落!");
-							resultFlag = "节温器主筏门脱落!";
-							engineInfo.setException_L1("节温器主筏门脱落!");
-						}
-					} else {
-						System.out.println("压力较低!");
-						resultFlag = "压力较低!";
-						engineInfo.setException_P2("压力较低!");
-					}
-				} else {
-					if (newEngineInfo.getPressure_P1() < 0.3) {
-						System.out.println("水泵压力过低!");
-						resultFlag = "水泵压力过低!";
-						engineInfo.setException_P1("水泵压力过低!!");
-					} else if (newEngineInfo.getPressure_P1() > 0.5) {
-						System.out.println("水泵压力过高!");
-						resultFlag = "水泵压力过高!";
-						engineInfo.setException_P1("水泵压力过高!");
-					}
-				}
+				System.out.println("压力较低!");
+				resultP1 = "压力较低!";
+				engineInfo.setException_P2("压力较低!");
+			}
+			// 水泵轴与叶轮径向间隙L
+			if (newEngineInfo.getGap_L1() < 0.04) {
+				resultL1 = "正常";
+			} else {
+				System.out.println("水泵压力较明显!");
+				resultL1 = "水泵震动较明显!";
+				engineInfo.setException_L1("水泵震动较明显!");
+			}
+			// 风扇传送带偏移量X
+			if (newEngineInfo.getOffset_X() > 8) {
+				System.out.println("冷却系统温度异常!");
+				resultX = "冷却系统温度异常!";
+				engineInfo.setException_X("冷却系统温度异常!");
+			}else {
+				resultX = "正常";
+			}
+		}
+		// 3.加防冻剂 汽油机
+		if (newEngineInfo.getEngineType().equals("gasolineEngine")
+				&& newEngineInfo.getCoolingMethod().equals("antifreeze")) {
+			// 冷却液温度T
+			if (newEngineInfo.getTem_T() > 95 && newEngineInfo.getTem_T() < 105) {
+				resultT = "正常";
+			} else {
+				System.out.println("冷却液温度过高!");
+				resultT = "冷却液温度过高!";
+				engineInfo.setException_T("冷却液温度过高!");
+			}
+			// 水泵压力P1
+			if (newEngineInfo.getPressure_P1() < 0.3) {
+				System.out.println("水泵压力过低!");
+				resultP1 = "水泵压力过低!";
+				engineInfo.setException_P1("水泵压力过低!");
+			} else if (newEngineInfo.getPressure_P1() > 0.5) {
+				System.out.println("水泵压力过高!");
+				resultP1 = "水泵压力过高!";
+				engineInfo.setException_P1("水泵压力过高!");
+			}else {
+				resultP1 = "正常";
+			}
+			// 汽缸压缩压力P2
+			if (newEngineInfo.getPressure_P2() > 1.0 && newEngineInfo.getPressure_P2() < 1.2) {
+				resultP2 = "正常";
+			} else {
+				System.out.println("压力较低!");
+				resultP2 = "压力较低!";
+				engineInfo.setException_P2("压力较低!");
+			}
+			// 水泵轴与叶轮径向间隙L
+			if (newEngineInfo.getGap_L1() < 0.04) {
+				resultL1 = "正常";
+			} else {
+				System.out.println("水泵压力较明显!");
+				resultL1 = "水泵震动较明显!";
+				engineInfo.setException_L1("水泵震动较明显!");
+			}
+			// 风扇传送带偏移量X
+			if (newEngineInfo.getOffset_X() > 8) {
+				System.out.println("冷却系统温度异常!");
+				resultX = "冷却系统温度异常!";
+				engineInfo.setException_X("冷却系统温度异常!");
+			}else {
+				resultX = "正常";
+			}
+		}
+		// 4.加防冻剂 柴油机
+		if (newEngineInfo.getEngineType().equals("dieselEngine")
+				&& newEngineInfo.getCoolingMethod().equals("antifreeze")) {
+			// 冷却液温度T
+			if (newEngineInfo.getTem_T() > 95 && newEngineInfo.getTem_T() < 105) {
+				resultT = "正常";
+			} else {
+				System.out.println("冷却液温度过高!");
+				resultT = "冷却液温度过高!";
+				engineInfo.setException_T("冷却液温度过高!");
+			}
+			// 水泵压力P1
+			if (newEngineInfo.getPressure_P1() < 0.3) {
+				System.out.println("水泵压力过低!");
+				resultP1 = "水泵压力过低!";
+				engineInfo.setException_P1("水泵压力过低!");
+			} else if (newEngineInfo.getPressure_P1() > 0.5) {
+				System.out.println("水泵压力过高!");
+				resultP1 = "水泵压力过高!";
+				engineInfo.setException_P1("水泵压力过高!");
+			}else {
+				resultP1 = "正常";
+			}
+			// 汽缸压缩压力P2
+			if (newEngineInfo.getPressure_P2() > 3.0 && newEngineInfo.getPressure_P2() < 6.0) {
+				resultP2 = "正常";
+			} else {
+				System.out.println("压力较低!");
+				resultP2 = "压力较低!";
+				engineInfo.setException_P2("压力较低!");
+			}
+			// 水泵轴与叶轮径向间隙L
+			if (newEngineInfo.getGap_L1() < 0.04) {
+				resultL1 = "正常";
+			} else {
+				System.out.println("水泵压力较明显!");
+				resultL1 = "水泵震动较明显!";
+				engineInfo.setException_L1("水泵震动较明显!");
+			}
+			// 风扇传送带偏移量X
+			if (newEngineInfo.getOffset_X() > 8) {
+				System.out.println("冷却系统温度异常!");
+				resultX = "冷却系统温度异常!";
+				engineInfo.setException_X("冷却系统温度异常!");
+			}else {
+				resultX = "正常";
 			}
 		}
 
@@ -348,31 +395,38 @@ public class ParameterController implements Serializable {
 		System.out.println("Exception_T" + engineInfo.getException_T());
 		System.out.println("Exception_P1" + engineInfo.getException_P1());
 		System.out.println("Exception_X" + engineInfo.getException_X());
-		System.out.println("resultFlag:  " + resultFlag);
+		// System.out.println("resultFlag: " + resultFlag);
 
-		//原因分析
-		if (resultFlag.equals("温度过高!")) {
-			resultList.add("1.节温器故障");
-			resultList.add("2.冷却液不足");
-			resultList.add("3.高温季节长时间低速大负荷行驶");
-			resultList.add("4.水箱内部水垢严重，散热不好");
-			resultList.add("5.冷却风扇故障");
-			resultList.add("6.水路堵塞");
-		} else if (resultFlag.equals("水泵压力过低!")) {
-			resultList.add("1.水密封和轴承失效");
-			resultList.add("2.发动机水道被水舵堵住");
-		}else if(resultFlag.equals("水泵压力过高!")) {
-			resultList.add("冷却液温度过高引起");
-		}else if(resultFlag.equals("压力较低")) {
-			resultList.add("1.汽缸垫损坏");
-			resultList.add("2.进气门或排气门座密封不严");
-			resultList.add("3.活塞坏开口间隙过大");
-			resultList.add("4.气缸盖衬垫因烧蚀而漏气");
-		}else if(resultFlag.equals("水泵轴与叶轮松脱!") || resultFlag.equals("节温器主筏门脱落!")) {
-			resultList.add("水泵轴与叶轮脱松");
-			
-		}else if (resultFlag.equals("冷却系统温度异常!")) {
-			resultList.add("风扇传送带脱落");
+		// 原因分析
+		System.out.println("resultT:  " + resultT.toString());
+		
+		if (resultT.equals("冷却液温度过高!")) {
+			resultListT.add("1.节温器故障");
+			resultListT.add("2.冷却液不足");
+			resultListT.add("3.高温季节长时间低速大负荷行驶");
+			resultListT.add("4.水箱内部水垢严重，散热不好");
+			resultListT.add("5.冷却风扇故障");
+			resultListT.add("6.水路堵塞");
+		}
+		if (resultL1.equals("水泵震动较明显!")) {
+			resultListL1.add("水泵轴与叶轮脱松");
+
+		}
+		if (resultP1.equals("水泵压力过低!")) {
+			resultListP1.add("1.水密封和轴承失效");
+			resultListP1.add("2.发动机水道被水舵堵住");
+		}
+		if (resultP1.equals("水泵压力过高!")) {
+			resultListP1.add("冷却液温度过高引起");
+		}
+		if (resultP2.equals("压力较低!")) {
+			resultListP2.add("1.汽缸垫损坏");
+			resultListP2.add("2.进气门或排气门座密封不严");
+			resultListP2.add("3.活塞坏开口间隙过大");
+			resultListP2.add("4.气缸盖衬垫因烧蚀而漏气");
+		}
+		if (resultX.equals("冷却系统温度异常!")) {
+			resultListX.add("风扇传送带脱落");
 		}
 		return "test.jsf";
 	}
@@ -404,17 +458,10 @@ public class ParameterController implements Serializable {
 
 			System.out.println("print newId:  " + newEngine.getId());
 		}
-		// engineInfoList.size();
-		// engineInfoList.get(1);
-		// System.out.println("打印输出size: " + engineInfoList.size());
-		// System.out.println("打印输出listItem.get(2): " + engineInfoList.get(2));
-		// 问题的核心：如何将List取出来 // 注意：此处list类型应该为java.util.Iterator
+		
 		Iterator<EngineInfo> iterator = engineInfoList.iterator();
 		while (iterator.hasNext()) {
 			EngineInfo engine = (EngineInfo) iterator.next(); // item.getName();
-
-			// System.out.println("print ID: " + engine.getId() + "print
-			// exception_T: " + engine.getException_T());
 		}
 
 		return "result.jsf";
@@ -457,35 +504,5 @@ public class ParameterController implements Serializable {
 			// exception_T: " + engine.getException_T());
 		}
 		return "log.jsf";
-	}
-
-	// 测试list
-	public String listTest() {
-		if (resultFlag.equals("温度过高!")) {
-			resultList.add("1.节温器故障");
-			resultList.add("2.冷却液不足");
-			resultList.add("3.高温季节长时间低速大负荷行驶");
-			resultList.add("4.水箱内部水垢严重，散热不好");
-			resultList.add("5.冷却风扇故障");
-			resultList.add("6.水路堵塞");
-		} else if (resultFlag.equals("水泵压力过低!")) {
-			resultList.add("1.水密封和轴承失效");
-			resultList.add("2.发动机水道被水舵堵住");
-		}else if(resultFlag.equals("水泵压力过高!")) {
-			resultList.add("冷却液温度过高引起");
-		}else if(resultFlag.equals("压力较低")) {
-			resultList.add("1.汽缸垫损坏");
-			resultList.add("2.进气门或排气门座密封不严");
-			resultList.add("3.活塞坏开口间隙过大");
-			resultList.add("4.气缸盖衬垫因烧蚀而漏气");
-		}else if(resultFlag.equals("水泵轴与叶轮松脱!") || resultFlag.equals("节温器主筏门脱落!")) {
-			resultList.add("水泵轴与叶轮脱松");
-			
-		}else if (resultFlag.equals("冷却系统温度异常!")) {
-			resultList.add("风扇传送带脱落");
-		}
-		resultList.add("result1");
-		resultList.add("result2");
-		return "list.jsf";
 	}
 }
