@@ -41,17 +41,80 @@
 
 
 		<div id="section">
-			<p>
-				<h1>异常表现</h1>
-			</p>
+
 			<h:form>
-				<p>#{parameterController.resultFlag}</p>
-				<p><h1>可能故障</h1></p>
 				<p>
-					<h:dataTable value="#{parameterController.resultList} "
-						var="result">
+					<h1>冷却液温度T</h1>
+				</p>
+				<p>#{parameterController.resultT}</p>
+				<p>
+					<h1>可能故障</h1>
+				</p>
+				<p>
+					<h:dataTable value="#{parameterController.resultListT} "
+						var="resultT">
 						<h:column>
-							<h:outputText value="#{result}" />
+							<h:outputText value="#{resultT}" />
+						</h:column>
+					</h:dataTable>
+				</p>
+				<p>
+					<h1>水泵压力P1</h1>
+				</p>
+				<p>#{parameterController.resultP1}</p>
+				<p>
+					<h1>可能故障</h1>
+				</p>
+				<p>
+					<h:dataTable value="#{parameterController.resultListP1} "
+						var="resultP1">
+						<h:column>
+							<h:outputText value="#{resultP1}" />
+						</h:column>
+					</h:dataTable>
+				</p>
+				<p>
+					<h1>气缸压缩压力P2</h1>
+				</p>
+				<p>#{parameterController.resultP2}</p>
+				<p>
+					<h1>可能故障</h1>
+				</p>
+				<p>
+					<h:dataTable value="#{parameterController.resultListP2} "
+						var="resultP2">
+						<h:column>
+							<h:outputText value="#{resultP2}" />
+						</h:column>
+					</h:dataTable>
+				</p>
+				<p>
+					<h1>水泵轴与叶轮径向间隙L</h1>
+				</p>
+				<p>#{parameterController.resultL1}</p>
+				<p>
+					<h1>可能故障</h1>
+				</p>
+				<p>
+					<h:dataTable value="#{parameterController.resultListL1} "
+						var="resultL1">
+						<h:column>
+							<h:outputText value="#{resultL1}" />
+						</h:column>
+					</h:dataTable>
+				</p>
+				<p>
+					<h1>风扇传送带偏移量X</h1>
+				</p>
+				<p>#{parameterController.resultX}</p>
+				<p>
+					<h1>可能故障</h1>
+				</p>
+				<p>
+					<h:dataTable value="#{parameterController.resultListX} "
+						var="resultX">
+						<h:column>
+							<h:outputText value="#{resultX}" />
 						</h:column>
 					</h:dataTable>
 				</p>
