@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the engine_info database table.
  * 
  */
 @Entity
-@Table(name="engine_info")
-@NamedQuery(name="EngineInfo.findAll", query="SELECT e FROM EngineInfo e")
+@Table(name = "engine_info")
+@NamedQuery(name = "EngineInfo.findAll", query = "SELECT e FROM EngineInfo e")
 public class EngineInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,40 +19,40 @@ public class EngineInfo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "engine_info_seq")
 	private Integer id;
 
-	@Column(name="\"exception_L1\"")
+	@Column(name = "\"exception_L1\"")
 	private String exception_L1;
 
-	@Column(name="\"exception_L2\"")
+	@Column(name = "\"exception_L2\"")
 	private String exception_L2;
 
-	@Column(name="\"exception_P1\"")
+	@Column(name = "\"exception_P1\"")
 	private String exception_P1;
 
-	@Column(name="\"exception_P2\"")
+	@Column(name = "\"exception_P2\"")
 	private String exception_P2;
 
-	@Column(name="\"exception_T\"")
+	@Column(name = "\"exception_T\"")
 	private String exception_T;
 
-	@Column(name="\"exception_X\"")
+	@Column(name = "\"exception_X\"")
 	private String exception_X;
 
-	@Column(name="\"gap_L1\"")
+	@Column(name = "\"gap_L1\"")
 	private Double gap_L1;
 
-	@Column(name="\"gap_L2\"")
+	@Column(name = "\"gap_L2\"")
 	private Double gap_L2;
 
-	@Column(name="\"offset_X\"")
+	@Column(name = "\"offset_X\"")
 	private Double offset_X;
 
-	@Column(name="\"pressure_P1\"")
+	@Column(name = "\"pressure_P1\"")
 	private Double pressure_P1;
 
-	@Column(name="\"pressure_P2\"")
+	@Column(name = "\"pressure_P2\"")
 	private Double pressure_P2;
 
-	@Column(name="\"tem_T\"")
+	@Column(name = "\"tem_T\"")
 	private Double tem_T;
 
 	@Temporal(TemporalType.DATE)

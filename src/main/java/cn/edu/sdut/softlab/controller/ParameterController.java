@@ -48,7 +48,7 @@ public class ParameterController implements Serializable {
 	public void setEngineInfoList(List<EngineInfo> engineInfoList) {
 		this.engineInfoList = engineInfoList;
 	}
-
+	private List<EngineInfo> newEngineInfoList;
 	public List<EngineInfo> getNewEngineInfoList() {
 		return newEngineInfoList;
 	}
@@ -106,7 +106,7 @@ public class ParameterController implements Serializable {
 		this.resultX = resultX;
 	}
 
-	private List<EngineInfo> newEngineInfoList;
+	
 	// 故障分析list
 	private List<String> resultListT = new ArrayList<String>();
 	private List<String> resultListP1 = new ArrayList<String>();
