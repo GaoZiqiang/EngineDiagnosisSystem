@@ -16,27 +16,28 @@
 			<div class="haoma-title">
 				<div class="haoma-inner">故障诊断</div>
 			</div>
+
 			<div class="connent">
 				<h:form>
 					<tr>
-						<td>发动机类型：</td>
+						<td><span class='engine-type'
+							style="font-size: 20px; font-family: '微软雅黑';">发动机类型</span></td>
 						<td><h:selectOneRadio value="#{tempEngine.engineType}">
 								<f:selectItem id="engineType1" itemValue="gasolineEngine"
 									itemLabel="汽油机" />
 								<f:selectItem id="engineType2" itemValue="dieselEngine"
 									itemLabel="柴油机" />
 							</h:selectOneRadio></td>
-						<td>(必选)</td>
 					</tr>
 
 					<tr>
-						<td>冷却方式：</td>
+						<td><span class='cooling-type'
+							style="font-size: 20px; font-family: '微软雅黑';">冷却方式</span></td>
 						<td><h:selectOneRadio value="#{tempEngine.coolingMethod}">
 								<f:selectItem id="method1" itemValue="coolant" itemLabel="加冷却液" />
 								<f:selectItem id="method2" itemValue="antifreeze"
 									itemLabel="加冷却液液和防冻剂" />
 							</h:selectOneRadio></td>
-						<td>(必选)</td>
 					</tr>
 					<ul class="box">
 						<li>
@@ -79,9 +80,17 @@
 					<div class="result">
 						<ul class="result-list">
 							<li class="list-inner"><h:commandButton value="诊断"
-									action="#{parameterController.analysis}" size="10" /></li>
-							<li class="list-inner"><a class="pause">暂停</a></li>
-							<li class="list-inner"><a class="quit">退出</a></li>
+									action="#{parameterController.analysis}" size="10"
+									style="width: 150px;
+	height: 40px;background-color: #e77674;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	cursor: pointer;
+	box-shadow: 0px;" />
+							</li>
+							<li class="list-inner"><a class="quit" href="index.jsf">退出</a></li>
 						</ul>
 					</div>
 				</h:form>
@@ -89,6 +98,7 @@
 		</div>
 	</div>
 	<script>
-</script>
+		
+	</script>
 </h:body>
 </html>
