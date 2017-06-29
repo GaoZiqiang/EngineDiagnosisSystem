@@ -1,48 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:head>
-	<title>故障诊断</title>
-	<link href="css/styles.css" rel="stylesheet" type="text/css" />
-	<link href="css/table-styles.css" rel="stylesheet" type="text/css" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<meta charset="UTF-8" />
+	<title>发动机远程监控与智能诊断系统</title>
+	<link rel="stylesheet" href="jump-base.css" />
+	<link rel="stylesheet" href="bootstrap.min.css" />
 </h:head>
-<h:body id="body">
-	<div class="container">
-		<div id="header">
-			<h1>发动机远程监控与智能诊断系统</h1>
-		</div>
-		<ul id="nav">
-
-		</ul>
-		<div id="daohang">
-
-			<ul>
-
-				<li><a href="./index.jsf">首页</a></li>
-
-				<li><a href="./engine.jsf">发动机</a></li>
-
-				<li><a href="./diagnosis.jsf">故障与诊断</a></li>
-
-				<li><a href="#">帮助</a></li>
-
-				<li><a href="#">关于</a></li>
-			</ul>
-
-		</div>
-
-
-		<div id="section" class="section">
-			<h1>故障诊断</h1>
-			<h:form>
-				<table>
+<h:body>
+	<div class="auto">
+		<div class="wrap">
+			<div class="haoma-title">
+				<div class="haoma-inner">故障诊断</div>
+			</div>
+			<div class="connent">
+				<h:form>
 					<tr>
 						<td>发动机类型：</td>
 						<td><h:selectOneRadio value="#{tempEngine.engineType}">
@@ -63,51 +38,57 @@
 							</h:selectOneRadio></td>
 						<td>(必选)</td>
 					</tr>
+					<ul class="box">
+						<li>
+							<div class="box1">
 
-					<tr>
-						<td>冷却液温度T:</td>
-						<td><h:inputText name="tem_T" value="#{tempEngine.tem_T}"
-								size="10" />℃</td>
-						<td>(必填)</td>
-					</tr>
-					<tr>
-						<td>水泵压力P1:</td>
-						<td><h:inputText name="pressure_P1"
-								value="#{tempEngine.pressure_P1}" size="10" />Mpa</td>
-						<td>(必填!)</td>
-					</tr>
+								<label for="tem" class="item">冷却液温度T</label>
+								<h:inputText name="tem_T" value="#{tempEngine.tem_T}" size="10" />
+							</div>
+						</li>
+						<li>
+							<div class="box1">
+								<label for="waterpa" class="item">水泵压力P1</label>
+								<h:inputText name="pressure_P1"
+									value="#{tempEngine.pressure_P1}" size="10" />
+							</div>
+						</li>
+						<li>
+							<div class="box1">
+								<label for="atopa" class="item">气缸压缩压力P2</label>
+								<h:inputText name="pressure_P2"
+									value="#{tempEngine.pressure_P2}" size="10" />
+							</div>
+						</li>
+						<li>
+							<div class="box1">
+								<label for="atogap" class="item">气温器主阀门间隙L</label>
+								<h:inputText name="gap_L1" value="#{tempEngine.gap_L1}"
+									size="10" />
+							</div>
+						</li>
 
-					<tr>
-						<td>汽缸压缩压力P2:</td>
-						<td><h:inputText name="pressure_P2"
-								value="#{tempEngine.pressure_P2}" size="10" />Mpa</td>
-						<td>(必填)</td>
-					</tr>
-					<tr>
-						<td>水泵轴与叶轮径向间隙L:</td>
-						<td><h:inputText name="gap_L1" value="#{tempEngine.gap_L1}"
-								size="10" />mm</td>
-						<td>(必填)</td>
-					</tr>
-					<tr>
-						<td size="10">水泵传动带偏移量X:</td>
-						<td><h:inputText name="offset_X"
-								value="#{tempEngine.offset_X}" size="10" />mm</td>
-						<td>(必填)</td>
-					</tr>
-					<tr>
-						<td><h:commandButton value="诊断"
-								action="#{parameterController.analysis}" size="10" /></td>
-						<td><h:commandButton value="查看记录"
-								action="#{parameterController.log}" size="10" /></td>
-						<td><h:commandButton value="退出"
-								action="#{parameterController.backOff}" size="10" /></td>
-					</tr>
-				</table>
-			</h:form>
+						<li>
+							<div class="box1">
+								<label for="wind" class="item">风的传功带偏移量X</label>
+								<h:inputText name="offset_X" value="#{tempEngine.offset_X}"
+									size="10" />
+							</div>
+						</li>
+					</ul>
+					<div class="result">
+						<ul class="result-list">
+							<li class="list-inner"><h:commandButton value="诊断"
+									action="#{parameterController.analysis}" size="10" /></li>
+							<li class="list-inner"><a class="pause">暂停</a></li>
+							<li class="list-inner"><a class="quit">退出</a></li>
+						</ul>
+					</div>
+				</h:form>
+			</div>
 		</div>
-		<div id="footer">Copyright © 2017 | Power by iWebSudio</div>
 	</div>
-
+	<script>
+</script>
 </h:body>
 </html>

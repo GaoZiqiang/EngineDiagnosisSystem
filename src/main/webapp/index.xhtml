@@ -1,55 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:head>
-	<title>首页</title>
-	<!-- css style partly from: http://www.coreservlets.com/JSF-Tutorial/jsf2 -->
-	<link href="css/styles.css" rel="stylesheet" type="text/css" />
-	<link href="css/table-styles.css" rel="stylesheet" type="text/css" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<meta charset="UTF-8" />
+	<title>发动机远程监控与智能诊断系统</title>
+	<link rel="stylesheet" href="Log.css" />
+	<link rel="stylesheet" href="resumeANI.css" />
+	<link rel="stylesheet" href="resumeJump.css" />
+	<link rel="stylesheet" href="bootstrap.min.css" />
+	<script src="jquery.min.js"></script>
 </h:head>
-<h:body id="body">
-	<div class="container">
-		<div id="header">
-			<h1>发动机远程监控与智能诊断系统</h1>
+<h:body>
+	<div class="all" style="width: 100%; height: 100%; margin: 0 auto;">
+		<!--header布局-->
+		<div class="header" id="home">
+			<!--title-->
+			<div class="title">
+				<p class="myName">发动机远程监控与智能诊断系统</p>
+				<!--登录界面-->
+				<div class="logIn">登录</div>
+				<!--注册界面-->
+				<div class="signIn">注册</div>
+			</div>
+			<hr>
+				<!--菜单界面-->
+			<div class="firstmenu">
+				<ul class="menu-list">
+					<li><a href="">首页</a></li>
+					<Li><a href=""></a>发动机类型</Li>
+					<li><a href="fault_dia.html">故障与诊断</a></li>
+					<Li><a href=""></a>帮助</Li>
+					<Li><a href=""></a>关于</Li>
+				</ul>
+			</div>
+
+			<!--登录信息界面-->
+			<div id="login">
+				<span class="login-headline"></span> <span class="login-close">X</span>
+				<div class="login-account">
+					账号<br />
+					<h:inputText name="login-username" value="#{temp.username}" size="10" />
+				</div>
+				<div class="login-password">
+					密码<br />
+					<h:inputText name="login-password" value="#{temp.password}" size="10" />
+				</div>
+				<div class="login-buttonLogin">
+					<h:commandButton value="登录" action="#{UserController.login}"
+						size="10" />
+				</div>
+			</div>
+
+			<!--注册信息界面-->
+			<div id="signin">
+				<h:form>
+					<span class="signin-headline"></span>
+					<span class="signin-close">X</span>
+					<div class="signin-contact">
+						邮箱/手机号<br />
+						<h:inputText name="username" placeholder="5-20个英语，字符，数字，区分大小写"
+							value="#{UserController.user.username}" size="10" />
+
+					</div>
+					<div class="signin-password">
+						密码<br />
+						<h:inputText name="password" placeholder="5-20个英语，字符，数字，区分大小写"
+							value="#{UserController.user.password}" size="10" />
+
+					</div>
+					<div class="verify-again">
+						<span>10</span>秒后重新获取
+					</div>
+					<div class="signin-buttonSign">
+						<h:commandButton value="注册" action="#{UserController.register}"
+							size="10" />
+					</div>
+				</h:form>
+			</div>
+			</hr>
 		</div>
-		<ul id="nav">
-
-		</ul>
-		<div id="daohang">
-
-			<ul>
-
-				<li><a href="./index.jsf">首页</a></li>
-
-				<li><a href="./engine.jsf">发动机</a></li>
-
-				<li><a href="#">故障与诊断</a></li>
-
-				<li><a href="#">帮助</a></li>
-
-				<li><a href="#">关于</a></li>
-
-				<li><a href="./login.jsf">登录</a></li>
-
-				<li><a href="./register.jsf">注册</a></li>
-
-			</ul>
-
+		<div class="footer">
+			<p>Designed and built with all the love in the world by @mdo and
+				@fat. Maintained by the core team with the help of our contributors.</p>
+			<p>©CopyRight 2006-2017 JB51.Net Inc All Rights Reserved. 版权所有</p>
 		</div>
-
-
-		<div id="section">
-			
-		</div>
-
-		<div id="footer">Copyright © 2017 | Power by iWebSudio </div>
 	</div>
+	<script type="text/javascript" src="resumeLog.js"></script>
 </h:body>
 </html>
