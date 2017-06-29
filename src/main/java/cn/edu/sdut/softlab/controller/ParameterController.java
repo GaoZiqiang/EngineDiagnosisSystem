@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 
+import antlr.StringUtils;
 import cn.edu.sdut.softlab.model.EngineInfo;
 import cn.edu.sdut.softlab.model.TempEngineInfo;
 
@@ -28,17 +30,16 @@ public class ParameterController implements Serializable {
 
 	@Inject
 	private EngineInfo engineInfo;
-	
+
 	EntityManagerFactory emf;
 	EntityManager em;
-	//测试结果
+	// 测试结果
 	String resultT = null;
 	String resultP1 = null;
 	String resultP2 = null;
 	String resultL1 = null;
 	String resultX = null;
 
-	
 	private List<EngineInfo> engineInfoList = null;
 
 	public List<EngineInfo> getEngineInfoList() {
@@ -48,7 +49,9 @@ public class ParameterController implements Serializable {
 	public void setEngineInfoList(List<EngineInfo> engineInfoList) {
 		this.engineInfoList = engineInfoList;
 	}
+
 	private List<EngineInfo> newEngineInfoList;
+
 	public List<EngineInfo> getNewEngineInfoList() {
 		return newEngineInfoList;
 	}
@@ -106,7 +109,6 @@ public class ParameterController implements Serializable {
 		this.resultX = resultX;
 	}
 
-	
 	// 故障分析list
 	private List<String> resultListT = new ArrayList<String>();
 	private List<String> resultListP1 = new ArrayList<String>();
@@ -115,6 +117,14 @@ public class ParameterController implements Serializable {
 	private List<String> resultListX = new ArrayList<String>();
 
 	public List<String> getResultListT() {
+		for (int i = 0; i < this.resultListT.size(); i++) {
+			if (this.resultListT.get(i).equals("[")) {
+				this.resultListT.remove("[");
+			}
+			if (this.resultListT.get(i).equals("]")) {
+				this.resultListT.remove("]");
+			}
+		}
 		return resultListT;
 	}
 
@@ -164,7 +174,6 @@ public class ParameterController implements Serializable {
 	}
 
 	// 统计报表
-	
 
 	// 参数分析
 	public String analysis() {
@@ -199,7 +208,7 @@ public class ParameterController implements Serializable {
 				System.out.println("水泵压力过resultL1高!");
 				resultP1 = "水泵压力过高!";
 				engineInfo.setException_P1("水泵压力过高!");
-			}else {
+			} else {
 				resultP1 = "正常";
 			}
 			// 汽缸压缩压力P2
@@ -223,7 +232,7 @@ public class ParameterController implements Serializable {
 				System.out.println("冷却系统温度异常!");
 				resultX = "冷却系统温度异常!";
 				engineInfo.setException_X("冷却系统温度异常!");
-			}else {
+			} else {
 				resultX = "正常";
 			}
 		}
@@ -247,7 +256,7 @@ public class ParameterController implements Serializable {
 				System.out.println("水泵压力过高!");
 				resultP1 = "水泵压力过高!";
 				engineInfo.setException_P1("水泵压力过高!");
-			}else {
+			} else {
 				resultP1 = "正常";
 			}
 			// 汽缸压缩压力P2
@@ -271,7 +280,7 @@ public class ParameterController implements Serializable {
 				System.out.println("冷却系统温度异常!");
 				resultX = "冷却系统温度异常!";
 				engineInfo.setException_X("冷却系统温度异常!");
-			}else {
+			} else {
 				resultX = "正常";
 			}
 		}
@@ -295,7 +304,7 @@ public class ParameterController implements Serializable {
 				System.out.println("水泵压力过高!");
 				resultP1 = "水泵压力过高!";
 				engineInfo.setException_P1("水泵压力过高!");
-			}else {
+			} else {
 				resultP1 = "正常";
 			}
 			// 汽缸压缩压力P2
@@ -319,7 +328,7 @@ public class ParameterController implements Serializable {
 				System.out.println("冷却系统温度异常!");
 				resultX = "冷却系统温度异常!";
 				engineInfo.setException_X("冷却系统温度异常!");
-			}else {
+			} else {
 				resultX = "正常";
 			}
 		}
@@ -343,7 +352,7 @@ public class ParameterController implements Serializable {
 				System.out.println("水泵压力过高!");
 				resultP1 = "水泵压力过高!";
 				engineInfo.setException_P1("水泵压力过高!");
-			}else {
+			} else {
 				resultP1 = "正常";
 			}
 			// 汽缸压缩压力P2
@@ -367,7 +376,7 @@ public class ParameterController implements Serializable {
 				System.out.println("冷却系统温度异常!");
 				resultX = "冷却系统温度异常!";
 				engineInfo.setException_X("冷却系统温度异常!");
-			}else {
+			} else {
 				resultX = "正常";
 			}
 		}
@@ -399,14 +408,15 @@ public class ParameterController implements Serializable {
 
 		// 原因分析
 		System.out.println("resultT:  " + resultT.toString());
-		
+
 		if (resultT.equals("冷却液温度过高!")) {
-			resultListT.add("1.节温器故障");
-			resultListT.add("2.冷却液不足");
-			resultListT.add("3.高温季节长时间低速大负荷行驶");
-			resultListT.add("4.水箱内部水垢严重，散热不好");
-			resultListT.add("5.冷却风扇故障");
-			resultListT.add("6.水路堵塞");
+			resultListT.add("1.节温器故障" + "'\r\n'");
+			resultListT.add("2.冷却液不足" + "'\r\n'");
+			resultListT.add("3.高温季节长时间低速大负荷行驶\r\n");
+			resultListT.add("4.水箱内部水垢严重，散热不好\r\n");
+			resultListT.add("5.冷却风扇故障\r\n");
+			resultListT.add("6.水路堵塞\r\n");
+			System.out.println("打印resultListT:  " + resultListT.toString());
 		}
 		if (resultL1.equals("水泵震动较明显!")) {
 			resultListL1.add("水泵轴与叶轮脱松");
@@ -428,7 +438,7 @@ public class ParameterController implements Serializable {
 		if (resultX.equals("冷却系统温度异常!")) {
 			resultListX.add("风扇传送带脱落");
 		}
-		return "test.jsf";
+		return "result.jsf";
 	}
 
 	public void testDouble() {
@@ -458,7 +468,7 @@ public class ParameterController implements Serializable {
 
 			System.out.println("print newId:  " + newEngine.getId());
 		}
-		
+
 		Iterator<EngineInfo> iterator = engineInfoList.iterator();
 		while (iterator.hasNext()) {
 			EngineInfo engine = (EngineInfo) iterator.next(); // item.getName();
