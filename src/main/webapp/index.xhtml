@@ -29,9 +29,15 @@
 				<!--菜单界面-->
 			<div class="firstmenu">
 				<ul class="menu-list">
-					<li><a href="">首页</a></li>
-					<Li><a href=""></a>发动机类型</Li>
-					<li><a href="fault_dia.html">故障与诊断</a></li>
+					<li><a href="index.jsf">首页</a></li>
+					<Li><a href=""></a>发动机类型
+						<ul class="engin-wrap">
+							<li class="engin-name"><a
+								href="http://baike.baidu.com/link?url=IvtDcvN0EIfr0f2C8IUhTD4bJazS-U54Q6MfGksvlsf9skK_hW5jpwaVSaaUCAXqkok99Wn4o529VOrfqQxydGiKblmXud27N4lXIs_4I-5VY6UFii7w4ZPxm3xucepQctbQBRvAs5ky5NcVKuMJV0hmLEJsckGPqd5bKCyAfyEHDBHWiEEE5vrhTGnzS7wUK5lvb2zbDt4oiS_z5bEpDq">柴油机</a></li>
+							<li class="engin-name"><a
+								href="http://baike.baidu.com/link?url=SGUY67Vs7hiPd1VWjZtOjRRpNHbleM5xToXGCaxR8lqFJtExyfxSuLl1xTMjY5bCXsRYzkJEaYM4DXNXAglagOh4dnHQYuacK9Fpz4bHa9XNoBXpCaN_JsC49JWhZ_qhEzGfYTEnP3haiHhLxffE30FAuKm9fgvdYaEkSNV94u9vQsmRUyaOeUs7fOqtTNjxxUslbyJzzxr5vkoTNHonoa">汽油机</a></li>
+						</ul></Li>
+					<li><a href="diagnosis.jsf">故障与诊断</a></li>
 					<Li><a href=""></a>帮助</Li>
 					<Li><a href=""></a>关于</Li>
 				</ul>
@@ -39,19 +45,43 @@
 
 			<!--登录信息界面-->
 			<div id="login">
-				<span class="login-headline"></span> <span class="login-close">X</span>
-				<div class="login-account">
-					账号<br />
-					<h:inputText name="login-username" value="#{temp.username}" size="10" />
-				</div>
-				<div class="login-password">
-					密码<br />
-					<h:inputText name="login-password" value="#{temp.password}" size="10" />
-				</div>
-				<div class="login-buttonLogin">
+				<h:form>
+					<span class="login-headline"></span>
+					<span class="login-close">X</span>
+					<div class="login-account">
+						账号<br />
+						<h:inputText id="login-username"
+							validator="#{UserController.loginUserNameValidate}"
+							value="#{UserController.tempUser.username}" size="10">
+							<f:ajax event="blur" render="login-nameError" />
+						</h:inputText>
+						<h:message for="login-username" id="login-nameError"
+							style="color: red; font-size:75%" />
+					</div>
+					<div class="login-password">
+						密码<br />
+						<h:inputText id="login-password"
+							validator="#{UserController.loginPasswordValidate}"
+							value="#{UserController.tempUser.password}" size="10">
+							<f:ajax event="keyup" render="login-passwordError" />
+						</h:inputText>
+						<h:message for="login-password" id="login-passwordError"
+							style="color: red; font-size:75%" />
+					</div>
+
 					<h:commandButton value="登录" action="#{UserController.login}"
-						size="10" />
-				</div>
+						size="10"
+						style="width: 280px;
+height: 40px;
+background-color: #ef7674;
+color: #fff;
+text-align: center;
+line-height: 30px;
+margin-left: 84px;
+margin-top: 15px;
+cursor: pointer;
+" />
+				</h:form>
 			</div>
 
 			<!--注册信息界面-->
@@ -61,33 +91,58 @@
 					<span class="signin-close">X</span>
 					<div class="signin-contact">
 						邮箱/手机号<br />
-						<h:inputText name="username" placeholder="5-20个英语，字符，数字，区分大小写"
-							value="#{UserController.user.username}" size="10" />
+						<h:inputText id="username" placeholder="5-20个英语，字符，数字，区分大小写"
+							validator="#{UserController.userNameValidate}"
+							value="#{UserController.user.username}" size="10">
+							<f:ajax event="blur" render="nameError" />
+						</h:inputText>
+						<br />
+						<h:message for="username" id="nameError"
+							style="color: red; font-size:75%" />
 
 					</div>
 					<div class="signin-password">
 						密码<br />
-						<h:inputText name="password" placeholder="5-20个英语，字符，数字，区分大小写"
-							value="#{UserController.user.password}" size="10" />
-
+						<h:inputText id="password" placeholder="5-20个英语，字符，数字，区分大小写"
+							validator="#{UserController.passwordValidate}"
+							value="#{UserController.user.password}" size="10">
+							<f:ajax event="keyup" render="passwordError" />
+						</h:inputText>
+						<br />
+						<h:message for="password" id="passwordError"
+							style="color: red;font-size:75%" />
 					</div>
 					<div class="verify-again">
 						<span>10</span>秒后重新获取
 					</div>
-					<div class="signin-buttonSign">
-						<h:commandButton value="注册" action="#{UserController.register}"
-							size="10" />
-					</div>
+
+					<h:commandButton value="注册" action="#{UserController.register}"
+						size="10"
+						style="width: 280px;
+height: 40px;
+background-color: #ef7674;
+color: #fff;
+text-align: center;
+line-height: 30px;
+margin-left: 74px;
+margin-top: 15px;
+cursor: pointer;
+" />
 				</h:form>
 			</div>
 			</hr>
 		</div>
 		<div class="footer">
-			<p>Designed and built with all the love in the world by @mdo and
-				@fat. Maintained by the core team with the help of our contributors.</p>
-			<p>©CopyRight 2006-2017 JB51.Net Inc All Rights Reserved. 版权所有</p>
+			<p>Copyright © 2017 山东理工大学. All right reserved. | 技术支持:314软件实验室 |
+				Power by iWebStudio</p>
 		</div>
 	</div>
 	<script type="text/javascript" src="resumeLog.js"></script>
+	<script>
+		//发动机类型弹出
+		$('.menu-list li:eq(1)').hover(function() {
+			$('.engin-wrap').toggle()
+		})
+	</script>
 </h:body>
 </html>
