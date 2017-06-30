@@ -1,0 +1,12 @@
+.menu li a{
+    font-family:"Arial";
+    color:#000;
+    text-decoration: none;
+}
+.menu li a:link{
+    color: #000;
+}
+.menu li a:hover,
+.menu li a:active{
+    color: #ef7674;
+}
