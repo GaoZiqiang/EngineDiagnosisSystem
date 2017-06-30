@@ -30,6 +30,15 @@ public class UserController {
 	EntityManager em;
 
 	private String tempLoginName;
+	private String flagResult;
+	public String getFlagResult() {
+		return flagResult;
+	}
+
+	public void setFlagResult(String flagResult) {
+		this.flagResult = flagResult;
+	}
+
 	@Inject
 	private UserInfo user;
 	private TempUserInfo tempUser = new TempUserInfo();
@@ -85,24 +94,27 @@ public class UserController {
 		String flag = null;
 		try {
 			emf = Persistence.createEntityManagerFactory("engine_diagnosis_system");
+			System.out.println("emf测试:  " + emf.toString());
 			em = emf.createEntityManager();
-
+			System.out.println("em测试:  " + em.toString());
 			Query query = em
 					.createQuery("select u from UserInfo u where u.username = :username and u.password = :password");
 			query.setParameter("username", tempUser.getUsername());
 			query.setParameter("password", tempUser.getPassword());
-
+			System.out.println("query测试:  " + query.toString());
 			List resultList = query.getResultList();
+			System.out.println("resultList测试:  " + resultList.size());
 
 			if (resultList.size() == 1) {
 				flag = "diagnosis";
 			} else {
 				flag = "index";
+				flagResult = "密码错误"; 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "diagnosis.jsf";
+		return flag;
 
 	}
 
