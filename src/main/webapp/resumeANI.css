@@ -1,0 +1,179 @@
+/*登录界面*/
+#login{
+    position: absolute;
+    width: 450px;
+    height: 375px;
+    background-color: #fff;
+    font-size: 18px;
+    font-family:Arial;
+    color: #000;
+    border: 1px solid #000;
+    display: none;
+}
+#login div{
+    box-sizing: border-box;
+}
+#login .login-headline{
+    height: 40px;
+    font-size:15px;
+    display: block;
+    font-family:"微软雅黑 Light";
+    text-align: center;
+    line-height: 40px;
+}
+#login .login-close{
+    float: left;
+    font-size:15px;
+    font-family:"Arial";
+    margin-top: -28px;
+    margin-left: 428px;
+    cursor: pointer;
+}
+#login .login-account,
+#login .login-password,
+#login .login-remeber,
+#login .login-buttonLogin
+{
+    width: 280px;
+    margin:10px auto 0px;
+}
+#login .login-account input,
+#login .login-password input
+{
+    width: 280px;
+    height: 45px;
+    font-size:
+    border-radius: 3px;
+    margin: 15px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.17);
+    color: #000000;
+}
+#login .login-password input：focus{
+    border: 1px solid #e77674;
+    box-shadow: 0px;
+}
+#login .login-remeber{
+    font-size: 10px;;
+    margin-top: 20px;
+}
+#login .login-buttonLogin{
+    width: 280px;
+    height: 30px;
+    background-color: #ef7674;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    margin-left:85px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+
+
+/*注册界面*/
+
+
+
+
+#signin{
+    position: absolute;
+    width: 450px;
+    height:375px;
+    background-color: #fff;
+    font-size: 18px;
+    font-family:Arial;
+    color: #000;
+    border: 1px solid #000;
+    display: none;
+}
+#signin div{
+    box-sizing: border-box;
+}
+#signin .signin-headline{
+    height: 40px;
+    font-size:15px;
+    display: block;
+    font-family:"微软雅黑 Light";
+    text-align: center;
+    line-height: 40px;
+}
+#signin .signin-close{
+    float: left;
+    font-size:15px;
+    font-family:"Arial";
+    margin-top: -28px;
+    margin-left: 428px;
+    cursor: pointer;
+}
+#signin .signin-contact,
+#signin .signin-name,
+#signin .signin-password,
+#signin .signin-buttonSign,
+#signin .verify
+{
+    width: 300px;
+    margin:10px auto 0px;
+
+}
+#signin .signin-contact input,
+#signin .signin-name input,
+#signin .signin-password input
+{
+    width: 280px;
+    height: 45px;
+    font-size:
+    border-radius: 3px;
+    margin: 15px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.17);
+    color: rgb(0, 0, 0);
+}
+#signin .verify input{
+    width: 180px;
+    height: 30px;
+    font-size: 10px;
+    border-radius: 3px;
+    margin: 10px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.17);
+    color: rgb(0, 0, 0);
+}
+#signin .verify span{
+    display: block;
+    position: absolute;
+    width: 95px;
+    height: 30px;
+    background-color: #ef7674;
+    font-size: 15px;
+    top: 253px;
+    left: 261px;
+    font-family:微软雅黑;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+}
+#signin .verify-again{
+    position: absolute;
+    width: 95px;
+    height: 30px;
+    top: 291px;
+    left: 261px;
+    background-color: #666666;
+    font-size: 10px;
+    font-family:微软雅黑;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    display:none;
+}
+#signin .signin-buttonSign{
+    width: 280px;
+    height: 30px;
+    background-color: #ef7674;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    margin-left:76px;
+    margin-top: 40px;
+    cursor: pointer;
+}
