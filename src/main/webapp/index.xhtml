@@ -61,13 +61,10 @@
 					<div class="login-password">
 						密码<br />
 						<h:inputText id="login-password"
-							validator="#{UserController.loginPasswordValidate}"
 							value="#{UserController.tempUser.password}" size="10">
-							<f:ajax event="keyup" render="login-passwordError" />
 						</h:inputText>
-						<h:message for="login-password" id="login-passwordError"
-							style="color: red; font-size:75%" />
 					</div>
+
 
 					<h:commandButton value="登录" action="#{UserController.login}"
 						size="10"
