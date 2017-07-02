@@ -208,7 +208,6 @@ public class UserController {
 		if (value.toString().length() < 5 || value.toString().length() > 12) {
 			throw new ValidatorException(new FacesMessage("密码长度应为5-12个字符"));
 		}
-
 	}
 
 	/*
