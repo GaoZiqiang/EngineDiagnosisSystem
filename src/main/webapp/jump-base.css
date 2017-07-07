@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+.auto {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.wrap {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+
+.wrap .haoma-title {
+	position: relative;
+	width: 1000px;
+	height: 50px;
+	margin-top: 100px;
+	margin-left: 50px;
+	border-bottom: 1px solid #ddd;
+	border-left: 6px solid #e77674;
+}
+
+.wrap .haoma-title .haoma-inner {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	font-size: 25px;
+	font-family: '微软雅黑';
+	line-height: 60px;
+	left: 15px;
+	bottom: 3px;
+}
+
+.wrap .connent {
+	width: 1400px;
+	height: 600px;
+	border: 1px solid #000;
+	margin-left: 50px;
+	margin-top: 50px;
+	padding: 20px;
+}
+
+.wrap .connent .box {
+	float: left;
+	list-style: none;
+	width: 620px;
+	height: 600px;
+}
+
+.wrap .connent .box li {
+	width: 620px;
+	height: 90px;
+	position: relative;
+}
+
+.wrap .connent .box .item {
+	position: absolute;
+	width: 200px;
+	height: 40px;
+	text-align: left;
+	line-height: 40px;
+	font-size: 20px;
+	font-family: 'Adobe 宋体 Std L';
+}
+
+.wrap .connent .box input {
+	position: absolute;
+	top: 50px;
+	left: -17px;
+	width: 500px;
+	height: 40px;
+	margin-left: 20px;
+	border-radius: 0px;
+}
+
+.wrap .connent .box input:focus {
+	box-shadow: 0px 0px 0px 0px;
+	border: 1px solid #e77674;
+}
+
+.wrap .connent .result {
+	width: 700px;
+	height: 550px;
+	float: right;
+}
+
+.wrap .connent .result .result-list {
+	width: 200px;
+	height: 550px;
+	margin: 0px auto;
+	list-style: none;
+}
+
+.wrap .connent .result .result-list li {
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	background-color: #e77674;
+	margin-top: 120px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	cursor: pointer;
+}
+
+.wrap .connent .result .result-list li a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.zhenduan {
+	width: 151px;
+	width: 150px;
+	height: 40px;
+	background-color: #e77674;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	cursor: pointer;
+	box-shadow: 0px;
+}
+
+.engine-type {
+	font-size: 15px;
+}
+
+.cooling-type {
+	font-size: 15px;
+}
+
+.list-inner {
+	
+}
+#zhenduan1{
+	width: 150px;
+	height: 40px;
+	background-color: #e77674;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	cursor: pointer;
+	box-shadow: 0px;
+}
+/*# sourceMappingURL=jump-base.css.map */
